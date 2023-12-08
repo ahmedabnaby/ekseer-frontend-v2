@@ -1,0 +1,671 @@
+/* ENGLISH FONT */
+@font-face {
+    font-family: Helvetica-Neue-Font-Light;
+    src: url(../fonts/Helvetica-Neue-Font/HelveticaNeueLT45LightRegular.ttf);
+}
+
+@font-face {
+    font-family: Helvetica-Neue-Font-Normal;
+    src: url(../fonts/Helvetica-Neue-Font/HelveticaNeueLTPro55Roman.otf);
+}
+
+@font-face {
+    font-family: Helvetica-Neue-Font-Semi-Bold;
+    src: url(../fonts/Helvetica-Neue-Font/HelveticaNeueLTPro65Medium.otf);
+}
+
+@font-face {
+    font-family: Helvetica-Neue-Font-Bold;
+    src: url(../fonts/Helvetica-Neue-Font/HelveticaNeueLT95BlackRegular.ttf);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* DARK COLOR : #0f0f17 */
+/* PRIMARY COLOR : #dbff17 */
+body {
+    font-family: Helvetica-Neue-Font-Normal !important;
+    background-color: #ffffff;
+    color: #0f0f17;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.navbar-brand,
+.footer h2 {
+    font-weight: 900 !important;
+    font-size: 32px !important;
+}
+
+.navbar-brand span,
+.footer span,
+.title span {
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    margin-left: -10px;
+}
+
+.bg-dark,
+.navbar-nav .dropdown-menu,
+.dropdown-item:hover {
+    background-color: #0f0f17 !important;
+}
+
+.bg-dark div {
+    color: #dbff17 !important;
+    font-family: Helvetica-Neue-Font-Semi-Bold !important;
+}
+
+.bg-dark .navbar-brand div {
+    color: #ffffff !important;
+    font-family: Helvetica-Neue-Font-Semi-Bold !important;
+}
+
+.bg-dark {
+    color: #dbff17 !important;
+    font-family: Helvetica-Neue-Font-Semi-Bold !important;
+    transition: 0.3s;
+}
+
+.bg-dark div:hover {
+    color: white !important;
+}
+
+.bg-dark-card {
+    width: 45%;
+    margin: 0px auto;
+    text-align: center;
+    /* background-color: #0f0f17 !important; */
+    /* color: #dbff17 !important; */
+    transition: 0.3s;
+}
+
+.bg-dark-card:hover {
+    background-color: #dbff17 !important;
+    color: #0f0f17 !important;
+}
+
+.bg-dark-card img {
+    width: 50%;
+}
+
+.navbar-toggler-icon {
+    background-image: url('../images/icons/toggler.png') !important;
+}
+
+.navbar-nav img {
+    position: relative;
+    top: -3px;
+    width: 22px;
+    margin-right: 3px;
+}
+
+#ar {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+    color: white !important;
+    text-align: right;
+    position: relative;
+    top: -2px;
+    font-weight: 500;
+}
+
+#ar div {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+    text-align: right;
+    position: relative;
+    top: -5px;
+    font-weight: 500;
+}
+
+#ar img {
+    position: relative;
+    top: 0px;
+    margin-left: 5px !important;
+}
+
+#ar-logo {
+    position: absolute;
+    top: 0;
+    right: -5px;
+}
+
+#ar-logo img {
+    position: relative;
+    top: 5px;
+    width: 100px;
+}
+
+.nav-link {
+    font-family: Helvetica-Neue-Font-Semi-Bold;
+    font-weight: 500;
+    color: #dbff17;
+}
+
+.nav-link,
+.navbar-brand {
+    cursor: pointer !important;
+}
+
+.title,
+.title-ar {
+    text-align: center;
+}
+
+.title h1 {
+    font-family: Helvetica-Neue-Font-Semi-Bold;
+    font-weight: 900;
+    font-size: 82px;
+    color: #0f0f17 !important;
+}
+
+.title h2 {
+    font-family: Helvetica-Neue-Font-Semi-Bold;
+    font-weight: 900;
+    font-size: 42px;
+    color: #0f0f17 !important;
+    border-bottom: 3px solid #dbff17;
+    width: fit-content;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.title h3 {
+    font-family: Helvetica-Neue-Font-Semi-Bold;
+    font-weight: 900;
+    font-size: 42px;
+    color: #0f0f17 !important;
+    width: fit-content;
+    padding-bottom: 5px;
+    text-align: center;
+    margin: 0px auto;
+    margin-bottom: 10px;
+}
+
+.title-ar img {
+    width: 250px;
+}
+
+.title p {
+    font-family: Helvetica-Neue-Font-Light;
+    font-weight: 600;
+}
+
+.title-ar p,
+.title-ar h2,
+.title-ar h4,
+.title-ar h5 {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+    font-weight: 500;
+}
+
+.card {
+    border: 0px;
+}
+
+.card-body {
+    margin-top: 25px !important;
+}
+
+/* .card-title {
+    margin: 0px auto;
+    background-image: url(../images/icons/doctora.png);
+    width: 64px;
+    height: 64px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #dbff17;
+    border-radius: 50%;
+    padding: 55px;
+}
+
+.card-body:hover>.card-title {
+    margin: 0px auto;
+    background-image: url(../images/icons/doctorb.png);
+    width: 64px;
+    height: 64px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #0f0f17;
+    border-radius: 50%;
+    padding: 55px;
+} */
+
+.card-body:hover>.btnPrimary {
+    background-color: #0f0f17;
+    color: #dbff17;
+}
+
+.card-body:hover>.btnPrimaryAr {
+    background-color: #0f0f17;
+    color: #dbff17;
+}
+
+.form-control,
+select {
+    border: 1px solid #b8d128 !important;
+    color: rgb(185, 184, 184) !important;
+}
+
+.form-control:focus,
+select:focus {
+    outline: 3px solid #b8d128 !important;
+}
+
+.btnPrimary:hover {
+    background-color: #0f0f17 !important;
+    color: #dbff17 !important;
+}
+
+.btnPrimaryAr:hover {
+    background-color: #0f0f17 !important;
+    color: #dbff17 !important;
+}
+
+.btnDark {
+    font-family: Helvetica-Neue-Font-Semi-bold !important;
+    font-weight: 800;
+    padding: 8px 22px;
+    font-size: 13px;
+    margin: 25px auto !important;
+    background-color: #0f0f17;
+    color: #dbff17;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btnDark:hover {
+    background-color: #dbff17;
+    color: #0f0f17;
+}
+
+.btnDark-ar {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+    font-weight: 800;
+    padding: 8px 22px;
+    font-size: 13px;
+    margin: 25px auto !important;
+    background-color: #0f0f17;
+    color: #dbff17;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btnPrimary {
+    font-family: Helvetica-Neue-Font-Semi-bold !important;
+    font-weight: 800;
+    padding: 14px 62px;
+    margin: 25px auto !important;
+    background-color: #dbff17;
+    color: #0f0f17;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btnLeft,
+.btnRight {
+    margin: 25px 0px !important;
+}
+
+.btnRight {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.btnPrimaryAr {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+    font-weight: 800;
+    padding: 14px 62px;
+    font-size: 20px;
+    margin: 25px auto !important;
+    background-color: #dbff17;
+    color: #0f0f17;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer {
+    padding-top: 55px;
+    padding-bottom: 15px;
+}
+
+.bg-color-primary {
+    background-color: #dbff17 !important;
+    color: #0f0f17 !important;
+}
+
+.RowflexDirCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.RowflexDirCol img {
+    width: 100px !important;
+}
+
+.footer h4 {
+    font-size: 16px !important;
+    font-weight: 600;
+}
+
+.footer h5 {
+    font-size: 13px !important;
+}
+
+#cutomText {
+    font-family: Helvetica-Neue-Font-Light !important;
+    font-weight: 900 !important;
+    font-size: 32px !important;
+}
+
+.ekseerForm {
+    margin: 0px auto;
+    width: 100%;
+    padding: 30px;
+}
+
+.ekseerForm-label {
+    font-family: Helvetica-Neue-Font-Semi-Bold !important;
+    font-weight: 900 !important;
+    font-size: 12px !important;
+}
+
+.ekseerForm-labelAr {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 14px !important;
+}
+
+.ekseerFormInnerLabel {
+    font-family: Helvetica-Neue-Font-Semi-Bold !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    color: rgb(185, 184, 184);
+}
+
+.ekseerFormInnerLabelAr {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    text-align: right;
+    direction: rtl;
+    color: rgb(185, 184, 184);
+}
+
+.form-control[type=file]:not(:disabled):not([readonly]) {
+    color: rgb(185, 184, 184) !important;
+}
+
+.loginForm {
+    border: 1px solid #0f0f17;
+}
+
+.forgetRegister,
+.forgetRegisterAr {
+    align-items: top;
+}
+
+.forgetRegister p {
+    font-family: Helvetica-Neue-Font-Semi-Bold !important;
+    font-size: 14px !important;
+    color: #0f0f17;
+}
+
+button {
+    border: 0px !important;
+}
+
+.forgetRegister span {
+    font-family: Helvetica-Neue-Font-Semi-Bold !important;
+    font-weight: 900;
+    font-size: 13px !important;
+    color: #8d8888;
+    position: relative;
+    text-decoration: underline;
+    left: 10px;
+    cursor: pointer;
+}
+
+.forgetRegisterAr p {
+    color: #0f0f17;
+    font-weight: 900;
+    font-size: 16px !important;
+}
+
+.forgetRegisterAr span {
+    font-weight: 900;
+    font-size: 14px !important;
+    color: #8d8888;
+    position: relative;
+    text-decoration: underline;
+    left: -5px;
+    cursor: pointer;
+}
+
+.scientistCol img {
+    width: 55%;
+}
+
+.forgetRegister span:hover,
+.forgetRegisterAr span:hover {
+    color: #0f0f17;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-left {
+    text-align: left;
+}
+
+#scientistImg {
+    width: 60% !important;
+}
+
+.ekseerFormInnerLabelAr>label {
+    left: 27rem !important;
+    right: 0px !important;
+}
+
+.ekseerFormInnerLabelAr-sm>label {
+    left: 9rem !important;
+    right: 0px !important;
+}
+
+.input-group img {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.primary-checkbox {
+    width: 19px;
+    height: 19px;
+    border-radius: 3px;
+    background: #f9f9ff;
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+}
+
+.primary-checkbox input {
+    width: 19px;
+    height: 19px;
+}
+
+.d-flex {
+    gap: 5px;
+}
+
+.d-flex h5 {
+    position: relative;
+    top: 3px;
+    font-size: 16px !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-background-clip: text !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+    box-shadow: inset 0 0 20px 20px #fff !important;
+}
+
+.error,
+.errorAr {
+    color: red;
+    font-size: 14px;
+}
+
+.errorAr {
+    font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+}
+
+.modal-content {
+    top: 40vh !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+#clockSpinner {
+    width: 75px;
+    margin: auto;
+}
+
+.scale-in-out {
+    transform: scale(0);
+    animation: scaleInOut 2s infinite ease-in-out;
+}
+
+@keyframes scaleInOut {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.fade-in-out {
+    opacity: 0;
+    animation: fadeIn 2s infinite ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.float {
+    position: relative;
+    /* Enable relative positioning */
+    animation: floatInOut 4s ease-in-out infinite;
+}
+
+@keyframes floatInOut {
+    0% {
+        transform: translateY(0px);
+        /* Start at the top */
+    }
+
+    50% {
+        transform: translateY(20px);
+        /* Move up */
+    }
+
+    100% {
+        transform: translateY(0px);
+        /* Return to starting position */
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .pmobile {
+        padding-bottom: 22px;
+    }
+
+    #ar-logo {
+        position: absolute;
+        top: 3px;
+        right: -5px;
+    }
+
+    .title h1 {
+        font-size: 32px;
+    }
+
+    #ar-logo img {
+        top: 4px;
+    }
+
+    .bg-dark-card {
+        width: 95%;
+    }
+
+    .btnPrimary {
+        font-size: 10px;
+    }
+
+    .btnPrimaryAr {
+        font-size: 13px;
+    }
+
+    .bg-dark-card img {
+        width: 65%;
+    }
+
+    .title-ar img {
+        width: 150px;
+    }
+
+    .ekseerForm {
+        padding: 5px;
+    }
+
+    .scientistCol img {
+        width: 65% !important;
+    }
+
+    .btnLeft {
+        margin: 25px auto !important;
+        width: 100%;
+        text-align: center;
+    }
+
+    .text-right {
+        position: relative;
+        left: -10px;
+    }
+
+    .ekseerFormInnerLabelAr>label {
+        left: 16rem !important;
+    }
+
+    .ekseerFormInnerLabelAr-sm>label {
+        left: 3rem !important;
+    }
+
+    .wrapReverse {
+        flex-wrap: wrap-reverse !important;
+    }
+
+}
