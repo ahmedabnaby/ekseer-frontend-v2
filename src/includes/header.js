@@ -1,12 +1,24 @@
-import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { isMobile } from 'react-device-detect';
 import { Container, Nav, Navbar, Image } from 'react-bootstrap';
 
 export const Header = () => {
+    var { state } = useLocation();
+    const nav = useNavigate();
+
     const [lang, setLang] = useState("en");
     const [isExpanded, setIsExpanded] = useState(false);
     const animationRef = useRef(null);
+
+    if (state === null) {
+        state = {
+            currentLanguage: "en",
+            isLoggedIn: false,
+            user: null
+        }
+    }
+    console.log(state)
 
     const handleToggleClick = () => {
         setIsExpanded((prevState) => !prevState);
@@ -22,7 +34,6 @@ export const Header = () => {
         });
     };
 
-    const nav = useNavigate();
     const changeLang = (language) => {
         setIsExpanded(false);
         if (language === "en") {
@@ -31,6 +42,9 @@ export const Header = () => {
             nav("/", {
                 state: {
                     currentLanguage: language,
+                    isLoggedIn: state?.isLoggedIn,
+                    user: state.user,
+                    logInToken: state?.logInToken
                 },
             });
         }
@@ -40,11 +54,14 @@ export const Header = () => {
             nav("/", {
                 state: {
                     currentLanguage: language,
+                    isLoggedIn: state?.isLoggedIn,
+                    user: state.user,
+                    logInToken: state?.logInToken
                 },
             });
         }
     }
-    const redirectLogin = (language) => {
+    const redirectLogin = (language, user) => {
         setIsExpanded(false);
         if (language === "en") {
             setLang("en")
@@ -52,6 +69,8 @@ export const Header = () => {
             nav("/login", {
                 state: {
                     currentLanguage: language,
+                    isLoggedIn: false,
+                    user: user
                 },
             });
         }
@@ -61,10 +80,71 @@ export const Header = () => {
             nav("/login", {
                 state: {
                     currentLanguage: language,
+                    isLoggedIn: false,
+                    user: user
                 },
             });
         }
     }
+    const redirectLogout = (language) => {
+        setIsExpanded(false);
+        if (language === "en") {
+            setLang("en")
+            setIsExpanded(false);
+            nav("/logout", {
+                state: {
+                    currentLanguage: language,
+                    isLoggedIn: true,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                },
+            });
+        }
+        else {
+            setLang("ar")
+            setIsExpanded(false);
+            nav("/logout", {
+                state: {
+                    currentLanguage: language,
+                    isLoggedIn: true,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                },
+            });
+        }
+    }
+    const redirectConsultation = (language) => {
+        setIsExpanded(false);
+        if (language === "en") {
+            setLang("en")
+            setIsExpanded(false);
+            nav("/consultations", {
+                state: {
+                    currentLanguage: language,
+                    isLoggedIn: true,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                },
+            });
+        }
+        else {
+            setLang("ar")
+            setIsExpanded(false);
+            nav("/consultations", {
+                state: {
+                    currentLanguage: language,
+                    isLoggedIn: true,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                },
+            });
+        }
+    }
+
+    useEffect(() => {
+        setLang(state?.currentLanguage)
+    }, []);
+
     return (
         <Navbar collapseOnSelect expand="lg" className="bg-dark">
             {lang === "en" ?
@@ -85,32 +165,63 @@ export const Header = () => {
                             }
                         }}>
                         <Nav className="mx-auto">
-                            <div className='nav-link' onClick={() => changeLang("en")}>
+                            <div className='nav-link d-flex' onClick={() => changeLang("en")}>
                                 <Image src="/assets/images/icons/home.png" />
                                 Home
                             </div>
-                            <div className='nav-link' onClick={() => redirectLogin("en")}>
-                                <Image src="/assets/images/icons/customer.png" />
-                                Register/Login
-                            </div>
-                            <div className='nav-link'>
+                            {state?.isLoggedIn ?
+                                <>
+                                    <div className='nav-link d-flex' onClick={() => redirectConsultation("en")}>
+                                        <Image src="/assets/images/icons/to-do-list.png" />
+                                        My consultations
+                                    </div>
+                                    <div className='nav-link d-flex' onClick={() => redirectLogin("en", "patient")}>
+                                        <Image src="/assets/images/icons/profile-user.png" />
+                                        Update profile
+                                    </div>
+                                </>
+                                :
+                                <div className='nav-link d-flex' onClick={() => redirectLogin("en", "patient")}>
+                                    <Image src="/assets/images/icons/customer.png" />
+                                    Register/Login
+                                </div>
+                            }
+                            <div className='nav-link d-flex'>
                                 <Image src="/assets/images/icons/id-card.png" />
                                 About us
                             </div>
-                            <div className='nav-link'>
+                            <div className='nav-link d-flex'>
                                 <Image src="/assets/images/icons/customer-service.png" />
                                 Contact us
                             </div>
+                            {state?.isLoggedIn ?
+                                <div className='nav-link d-flex' onClick={() => redirectLogout("en")}>
+                                    <Image src="/assets/images/icons/logout.png" />
+                                    Logout
+                                </div>
+                                :
+                                ""}
                         </Nav>
                         <Nav>
-                            <div className='nav-link'>
-                                <Image src="/assets/images/icons/doctor.png" />
-                                Doctors Portal
-                            </div>
-                            <div className='nav-link' id="ar" onClick={() => changeLang("ar")}>
-                                العربية
-                                <Image src="/assets/images/icons/saudi-arabia.png" />
-                            </div>
+
+                            {state?.user?.is_doctor ?
+                                ""
+                                :
+                                <>
+                                    {state?.user?.is_doctor === false ?
+                                        ""
+                                        :
+                                        <div className='nav-link d-flex' onClick={() => redirectLogin("en", "doctor")}>
+                                            <Image src="/assets/images/icons/doctor.png" />
+                                            Doctors Portal
+                                        </div>
+                                    }
+
+                                    <div className='nav-link d-flex' id="ar" onClick={() => changeLang("ar")} style={{ flexDirection: "row-reverse", marginRight: '5px' }}>
+                                        العربية
+                                        <Image src="/assets/images/icons/saudi-arabia.png" />
+                                    </div></>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -130,29 +241,55 @@ export const Header = () => {
                                 }
                             }}>
                             <Nav className="mx-auto mt-3" id='ar'>
-                                <div className='nav-link' onClick={() => changeLang("ar")}>
+                                <div className='nav-link d-flex' onClick={() => changeLang("ar")}>
                                     الصفحة الرئيسية
                                     <Image src="/assets/images/icons/home.png" />
                                 </div>
-                                <div className='nav-link' onClick={() => redirectLogin("ar")}>
-                                    التسجيل/تسجيل الدخول
-                                    <Image src="/assets/images/icons/customer.png" />
-                                </div>
-                                <div className='nav-link'>
+                                {state?.isLoggedIn ?
+                                    <>
+                                        <div className='nav-link d-flex' onClick={() => redirectConsultation("ar")}>
+                                            استشاراتي
+                                            <Image src="/assets/images/icons/to-do-list.png" />
+                                        </div>
+                                        <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
+                                            تحديث الملف
+                                            <Image src="/assets/images/icons/profile-user.png" />
+                                        </div>
+                                    </>
+                                    :
+                                    <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
+                                        التسجيل/تسجيل الدخول
+                                        <Image src="/assets/images/icons/customer.png" />
+                                    </div>
+                                }
+                                <div className='nav-link d-flex'>
                                     من نحن
                                     <Image src="/assets/images/icons/id-card.png" />
                                 </div>
-                                <div className='nav-link'>
+                                <div className='nav-link d-flex'>
                                     اتصل بنا
                                     <Image src="/assets/images/icons/customer-service.png" />
                                 </div>
+                                {state?.isLoggedIn ?
+                                    <div className='nav-link d-flex' onClick={() => redirectLogout("ar")}>
+                                        تسجيل الخروج
+                                        <Image src="/assets/images/icons/logout.png" />
+                                    </div>
+                                    :
+                                    ""
+                                }
                             </Nav>
                             <Nav className='mt-3'>
-                                <div className='nav-link'>
-                                    بوابة الأطباء
-                                    <Image src="/assets/images/icons/doctor.png" />
-                                </div>
-                                <div style={{ textAlign: 'left' }} className='nav-link' id="ar" onClick={() => changeLang("en")}>
+                                {state?.user?.is_doctor === false ?
+                                    ""
+                                    :
+                                    <div className='nav-link d-flex' onClick={() => redirectLogin("en", "doctor")} style={{ justifyContent: 'flex-end' }}>
+                                        بوابة الأطباء
+                                        <Image src="/assets/images/icons/doctor.png" />
+                                    </div>
+                                }
+
+                                <div style={{ textAlign: 'left' }} className='nav-link d-flex' id="ar" onClick={() => changeLang("en")}>
                                     <Image src="/assets/images/icons/united-states.png" />
                                     <span style={{ color: "white" }}>EN</span>
                                 </div>
@@ -171,29 +308,54 @@ export const Header = () => {
                             }}
                             style={{ position: "relative", top: '2px' }}>
                             <Nav>
-                                <div className='nav-link' id="ar" onClick={() => changeLang("en")}>
+                                <div className='nav-link d-flex' id="ar" onClick={() => changeLang("en")}>
                                     <Image src="/assets/images/icons/united-states.png" />
                                     <span style={{ color: "white" }}>EN</span>
                                 </div>
-                                <div className='nav-link'>
-                                    بوابة الأطباء
-                                    <Image src="/assets/images/icons/doctor.png" />
-                                </div>
+                                {state?.user?.is_doctor === false ?
+                                    ""
+                                    :
+                                    <div className='nav-link d-flex' onClick={() => redirectLogin("en", "doctor")}>
+                                        بوابة الأطباء
+                                        <Image src="/assets/images/icons/doctor.png" />
+                                    </div>
+                                }
                             </Nav>
                             <Nav className="mx-auto" id='ar'>
-                                <div className='nav-link'>
+                                {state?.isLoggedIn ?
+                                    <div className='nav-link d-flex' onClick={() => redirectLogout("ar")}>
+                                        تسجيل الخروج
+                                        <Image src="/assets/images/icons/logout.png" />
+                                    </div>
+                                    :
+                                    ""
+                                }
+                                <div className='nav-link d-flex'>
                                     اتصل بنا
                                     <Image src="/assets/images/icons/customer-service.png" />
                                 </div>
-                                <div className='nav-link'>
+                                <div className='nav-link d-flex'>
                                     من نحن
                                     <Image src="/assets/images/icons/id-card.png" />
                                 </div>
-                                <div className='nav-link' onClick={() => redirectLogin("ar")}>
-                                    التسجيل/تسجيل الدخول
-                                    <Image src="/assets/images/icons/customer.png" />
-                                </div>
-                                <div className='nav-link' onClick={() => changeLang("ar")}>
+                                {state?.isLoggedIn ?
+                                    <>
+                                        <div className='nav-link d-flex' onClick={() => redirectConsultation("ar")}>
+                                            استشاراتي
+                                            <Image src="/assets/images/icons/to-do-list.png" />
+                                        </div>
+                                        <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
+                                            تحديث الملف
+                                            <Image src="/assets/images/icons/profile-user.png" />
+                                        </div>
+                                    </>
+                                    :
+                                    <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
+                                        التسجيل/تسجيل الدخول
+                                        <Image src="/assets/images/icons/customer.png" />
+                                    </div>
+                                }
+                                <div className='nav-link d-flex' onClick={() => changeLang("ar")}>
                                     الصفحة الرئيسية
                                     <Image src="/assets/images/icons/home.png" />
                                 </div>
@@ -211,3 +373,4 @@ export const Header = () => {
         </Navbar>
     );
 }
+
