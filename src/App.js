@@ -1,6 +1,8 @@
 import React from "react";
 import { Header } from "./includes/header";
 import { Home } from "./pages/Home"
+import { Contact } from "./pages/Contact"
+import { About } from "./pages/About"
 import { Login } from "./pages/Login"
 import { Logout } from "./includes/Logout"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -14,6 +16,8 @@ import { Calls } from "./pages/Calls";
 import { PaymentForm } from "./pages/PaymentForm";
 import { Consultations } from "./pages/Consultations";
 import ScrollToTop from "./helpers/helpers";
+import { OurDoctors } from "./pages/OurDoctors";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 
 const App = () => {
   return (
@@ -22,6 +26,10 @@ const App = () => {
       <Header />
       <Routes>
         <Route exact path="/" name="Home" index element={<Home />} />
+        <Route exact path="/contact-us" name="Contact" element={<Contact />} />
+        <Route exact path="/about-us" name="About" element={<About />} />
+        <Route exact path="/our-doctors" name="About" element={<OurDoctors />} />
+        <Route exact path="/privacy-policy" name="About" element={<PrivacyPolicy />} />
 
         <Route exact path="/login" name="Login" element={<Login />} />
         <Route exact path="/logout" name="Logout" element={<Logout />} />

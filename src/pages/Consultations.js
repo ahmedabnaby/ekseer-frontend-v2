@@ -169,7 +169,12 @@ export const Consultations = () => {
                                                         {consultations && consultations?.filter(consultation => consultation.patient_id === state?.user?.id).map((filteredConsultation, index) => (
                                                             <ListGroup as="ol" key={filteredConsultation.id}>
                                                                 {doctorsOrPatients?.filter(doctor => filteredConsultation.doctor_id === doctor.id).map((filteredDoctor) => (
-                                                                    <ListGroup.Item as="li" className="d-flex justify-content-between align-items-center" style={{ cursor: 'pointer' }} key={filteredDoctor.id} onClick={() => showSelectedConsultation(filteredConsultation)}>
+                                                                    <ListGroup.Item
+                                                                        as="li"
+                                                                        className="d-flex justify-content-between align-items-center"
+                                                                        style={{ cursor: 'pointer' }}
+                                                                        key={filteredDoctor.id}
+                                                                        onClick={() => showSelectedConsultation(filteredConsultation)}>
                                                                         {index + 1}.
                                                                         <div className="ms-2 me-auto">
                                                                             <div className="fw-bold">{filteredConsultation.chief_complaint}</div>

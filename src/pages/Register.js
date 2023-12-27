@@ -74,6 +74,10 @@ export const Register = () => {
         if (state.user === "doctor") {
             bodyFormData.append("scfhs_registration", e.target.scfhs_number.value);
             bodyFormData.append("copy_of_scfhs_registration_card", e.target.scfhs_card.files[0]);
+            bodyFormData.append("current_employer_name", e.target.current_employer_name.value);
+            bodyFormData.append("current_employer_license_num", e.target.current_employer_license_num.value);
+            bodyFormData.append("current_employer_city", e.target.current_employer_city.value);
+            bodyFormData.append("current_employer_website", e.target.current_employer_website.value);
             bodyFormData.append("cv", e.target.cv.files[0]);
             bodyFormData.append("personal_photo", e.target.personal_photo.files[0]);
             bodyFormData.append("is_doctor", true);
@@ -213,7 +217,7 @@ export const Register = () => {
                                                                     <FormControl type="file" name="scfhs_card" placeholder="Copy of SCFHS Registration" style={{ padding: '1rem .75rem', paddingLeft: '25px' }} required />
                                                                 </Col>
                                                             </Row>
-                                                            <Row>
+                                                            <Row className='mb-3'>
                                                                 <Col md={6} sm={6} style={{ width: '50%' }}>
                                                                     <FormLabel htmlFor="personal_photo" className="ekseerForm-label">Your Personal Photo</FormLabel>
                                                                     {personalPhotoErrors ? <p className="error">Only images are accepted! Please upload a valid image. The file you uploaded was either not an image or a corrupted image.</p> : ''}
@@ -223,6 +227,50 @@ export const Register = () => {
                                                                     <FormLabel htmlFor="cv" className="ekseerForm-label">CV</FormLabel>
                                                                     {cvErrors ? <p className="error">The file you uploaded was either not a file or corrupted.</p> : ''}
                                                                     <FormControl type="file" name="cv" placeholder="CV" style={{ padding: '1rem .75rem', paddingLeft: '25px' }} required />
+                                                                </Col>
+                                                            </Row>
+                                                            <Row>
+                                                                <Col md={6} sm={12} className='mb-3'>
+                                                                    <FormLabel htmlFor="current_employer_name" className="ekseerForm-label">Current Employer Name</FormLabel>
+                                                                    <FloatingLabel
+                                                                        controlId="current_employer_name"
+                                                                        label="Current Employer Name"
+                                                                        className="ekseerFormInnerLabel"
+                                                                    >
+                                                                        <FormControl type="text" name="current_employer_name" placeholder="Current Employer Name" required />
+                                                                    </FloatingLabel>
+                                                                </Col>
+                                                                <Col md={6} sm={12} className='mb-3'>
+                                                                    <FormLabel htmlFor="current_employer_license_num" className="ekseerForm-label">Current Employer License Number</FormLabel>
+                                                                    <FloatingLabel
+                                                                        controlId="current_employer_license_num"
+                                                                        label="Current Employer License Number"
+                                                                        className="ekseerFormInnerLabel"
+                                                                    >
+                                                                        <FormControl type="text" name="current_employer_license_num" placeholder="Current Employer License Number" required />
+                                                                    </FloatingLabel>
+                                                                </Col>
+                                                            </Row>
+                                                            <Row>
+                                                                <Col md={6} sm={12} className='mb-3'>
+                                                                    <FormLabel htmlFor="current_employer_city" className="ekseerForm-label">Current Employer City Location</FormLabel>
+                                                                    <FloatingLabel
+                                                                        controlId="current_employer_city"
+                                                                        label="Current Employer City Location"
+                                                                        className="ekseerFormInnerLabel"
+                                                                    >
+                                                                        <FormControl type="text" name="current_employer_city" placeholder="Current Employer City Location" required />
+                                                                    </FloatingLabel>
+                                                                </Col>
+                                                                <Col md={6} sm={12} className='mb-3'>
+                                                                    <FormLabel htmlFor="current_employer_website" className="ekseerForm-label">Current Employer License Website</FormLabel>
+                                                                    <FloatingLabel
+                                                                        controlId="current_employer_website"
+                                                                        label="Current Employer License Website"
+                                                                        className="ekseerFormInnerLabel"
+                                                                    >
+                                                                        <FormControl type="text" name="current_employer_website" placeholder="Current Employer License Website" required />
+                                                                    </FloatingLabel>
                                                                 </Col>
                                                             </Row>
                                                         </>
@@ -901,7 +949,3 @@ export const Register = () => {
         </>
     );
 }
-
-// const LoadingScreen = () => (
-//     <div>Loading...</div>
-// );

@@ -6,9 +6,9 @@ import axios from 'axios';
 export const PaymentForm = () => {
   const nav = useNavigate();
   var { state } = useLocation();
-  const [hasRun, setHasRun] = useState(false);
   const [status, setStatus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPaymentFailed, setIsPaymentFailed] = useState(true);
 
   const location = useLocation();
   const queryString = location.search;
@@ -25,16 +25,29 @@ export const PaymentForm = () => {
       url: `http://127.0.0.1:8000/api/get-order-payment/${paymentTypeValue}`
     })
       .then(function (response) {
+        console.log(response)
         if (response.data.result.order.status === "CANCELLED" || response.data.result.order.status === "FAILED" || response.data.result.order.status === "REJECTED" || response.data.result.order.status === "EXPIRED") {
-          console.log(response);
+          setStatus(false)
+          setIsLoading(false)
+          setIsPaymentFailed(true)
+          const timeoutId = setTimeout(() => {
+            handleReturnToHomepage();
+          }, 5000);
+          return () => clearInterval(timeoutId);
         }
         else {
+          setIsLoading(false)
+          setIsPaymentFailed(false)
           setStatus(true)
+          const timeoutId = setTimeout(() => {
+            handleStartVideoCall();
+          }, 5000);
+          return () => clearInterval(timeoutId);
         }
       })
       .catch(function (response) {
         setIsLoading(false);
-        handleReturnToHomepage()
+        console.log(response)
       });
   }
 
@@ -44,9 +57,8 @@ export const PaymentForm = () => {
   if (state === null) {
     state = prevState
   }
-  console.log(state)
 
-  const handleStartVideoCall = () => {
+  const handleStartVideoCall = async () => {
     if (state?.currentLanguage === "en") {
       nav("/video-call", {
         state: {
@@ -68,8 +80,7 @@ export const PaymentForm = () => {
       });
     }
   }
-  const handleReturnToHomepage = () => {
-    setIsLoading(true);
+  const handleReturnToHomepage = async () => {
 
     if (state?.currentLanguage === "en") {
       nav("/", {
@@ -92,62 +103,36 @@ export const PaymentForm = () => {
       });
     }
   }
-
-
   useEffect(() => {
-    console.log(status)
     checkOrderStatus();
-    setIsLoading(true);
-    const timeoutId = setTimeout(() => {
-      // Your function to be executed after 2 seconds
-      if (status) {
-        handleStartVideoCall();
-        setHasRun(true); // Optional: Mark the function as run
-      }
-      else {
-        handleReturnToHomepage();
-      }
-    }, 5000);
-
-    // Cleanup function to clear the timeout
-    return () => clearTimeout(timeoutId);
-  }, []); // Empty dependency array to run only once
+  }, []);
   return (
-    <Container>
-      {!isLoading &&
-        <>
-          {status ?
-            <div className={state?.currentLanguage === "en" ? "successPayment" : "successPaymentAr"}>
-              {state?.currentLanguage === "en" ? <h2>We've received your payment, thank you!</h2> : <h2>تم الدفع بنجاح</h2>}
-              <Image src='assets/images/payment-success.png' style={{ margin: '0px auto' }} className='float' />
-            </div>
-            :
-            <div className={state?.currentLanguage === "en" ? "successPayment" : "successPaymentAr"}>
-              {state?.currentLanguage === "en" ? <h2>There's an error during the payment, please contact us to follow up this issue.</h2> : <h2>حدث خطأ أثناء الدفع، يرجى الاتصال بنا لمتابعة هذه المشكلة</h2>}
-              <Image src='assets/images/icons/cancelled.png' style={{ margin: '0px auto' }} className='float' />
-            </div>
-          }
-        </>
-      }
+    <>
       {isLoading &&
         <>
-          <div className='spinner' id='transparentSpinner'>
+          <div className='spinner'>
             <Image src="assets/images/icons/clock.gif" className="mb-5 float" id='clockSpinner' />
           </div>
-          {status ?
-            <div className={state?.currentLanguage === "en" ? "successPayment" : "successPaymentAr"}>
-              {state?.currentLanguage === "en" ? <h2>We've received your payment, thank you!</h2> : <h2>تم الدفع بنجاح</h2>}
-              <Image src='assets/images/payment-success.png' style={{ margin: '0px auto' }} className='float' />
-            </div>
-            :
-            <div className={state?.currentLanguage === "en" ? "successPayment" : "successPaymentAr"}>
-              {state?.currentLanguage === "en" ? <h2>There's an error during the payment, please contact us to follow up this issue.</h2> : <h2>حدث خطأ أثناء الدفع، يرجى الاتصال بنا لمتابعة هذه المشكلة</h2>}
-              <Image src='assets/images/icons/cancelled.png' style={{ margin: '0px auto' }} className='float' />
-            </div>
-          }
         </>
       }
-    </Container>
+      {status && !isPaymentFailed && !isLoading &&
+        <>
+
+          <div className={state?.currentLanguage === "en" ? "successPayment" : "successPaymentAr"}>
+            {state?.currentLanguage === "en" ? <h2>We've received your payment, thank you!</h2> : <h2>تم الدفع بنجاح</h2>}
+            <Image src='assets/images/payment-success.png' style={{ margin: '0px auto' }} className='float' />
+          </div>
+        </>
+      }
+      {isPaymentFailed && !isLoading && !status &&
+        <>
+          <div className={state?.currentLanguage === "en" ? "successPayment" : "successPaymentAr"}>
+            {state?.currentLanguage === "en" ? <h2>There's an error during the payment, please contact us to follow up this issue.</h2> : <h2>حدث خطأ أثناء الدفع، يرجى الاتصال بنا لمتابعة هذه المشكلة</h2>}
+            <Image src='assets/images/icons/cancelled.png' style={{ margin: '0px auto' }} className='float' />
+          </div>
+        </>
+      }
+    </>
   );
 };
 

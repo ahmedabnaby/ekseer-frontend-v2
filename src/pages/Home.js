@@ -82,7 +82,9 @@ export const Home = () => {
                             {state?.isLoggedIn ? <h5 className="text-left" id="welcomeFullName" style={{ fontWeight: '600' }}>Welcome <span style={{ position: 'relative', left: '10px' }}>{state?.user.full_name}.</span></h5> : ""}
 
                             {/* HOME PAGE ENGLISH */}
-                            <h1>ekseer<span>&#174;</span></h1>
+                            <div className="homeLogo" id="logoLarger">
+                                Medical Cloud <br /> <span id='homeCopyRights'>Company</span>  <span id="cpSpan">&#174;</span>
+                            </div>
                             <p>Emergency consultant, anytime,  anywhere.</p>
                             <Card className="mt-2 mb-3 bg-dark-card">
                                 <CardBody>
@@ -90,18 +92,26 @@ export const Home = () => {
                                     {/* <CardTitle></CardTitle> */}
                                     {state?.isLoggedIn ?
                                         state?.user.is_doctor ?
-                                            (
-                                                <div className="btnPrimary" onClick={redirectCalls}>
-                                                    Start Accepting Consultations
-                                                </div>
-                                            )
+                                            state?.user.is_verified ?
+                                                (
+                                                    <div className="btnPrimary" onClick={redirectCalls}>
+                                                        Start Accepting Consultations
+                                                    </div>
+                                                )
+                                                :
+                                                (
+                                                    <p className="mt-4">
+                                                        <strong style={{fontSize:'1.5rem', fontStyle:'italic', color:'#3c3c3c', lineHeight:'12px'}}>We are currently reviewing your application,
+                                                            once you're verified we will let you know so you can start accepting consultaions.
+                                                        </strong>
+                                                    </p>
+                                                )
                                             :
                                             (
                                                 <div className="btnPrimary" onClick={redirectQuestions}>
                                                     Request Emergency Consultation
                                                 </div>
                                             )
-
                                         :
                                         <div className="btnPrimary" onClick={redirectLogin}>
                                             Request Emergency Consultation
@@ -116,7 +126,9 @@ export const Home = () => {
                         <>
                             {/* HOME PAGE ARABIIC */}
                             {state?.isLoggedIn ? <h5 className="text-right" id="welcomeFullName"><span style={{ position: 'relative', left: '10px' }}>{state?.user.full_name}&nbsp;</span>&nbsp; مرحبا </h5> : ""}
-                            <Image src="/assets/images/arlogo-no-dark.png" />
+                            <div className="homeLogoAr">
+                                شركة السحابة <br />  <span id="copyAr">&#174;</span> <span id='companyLogoAr'>الطبية</span>
+                            </div>
                             <p className="mt-2">استشاري طب طوارئ في أي وقت<br /> .وأي مكان</p>
                             <Card className="mt-2 mb-3 bg-dark-card">
                                 <CardBody>

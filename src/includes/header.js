@@ -18,7 +18,7 @@ export const Header = () => {
             user: null
         }
     }
-    console.log(state)
+    // console.log(state)
 
     const handleToggleClick = () => {
         setIsExpanded((prevState) => !prevState);
@@ -140,7 +140,98 @@ export const Header = () => {
             });
         }
     }
-
+    const navigateContact = () => {
+        setIsExpanded(false);
+        if (state?.currentLanguage === "en") {
+            nav("contact-us", {
+                state: {
+                    currentLanguage: "en",
+                    isLoggedIn: state?.isLoggedIn ? true : false,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                }
+            })
+        }
+        else {
+            nav("contact-us", {
+                state: {
+                    currentLanguage: "ar",
+                    isLoggedIn: state?.isLoggedIn ? true : false,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                }
+            })
+        }
+    }
+    const navigateOurDoctors = () => {
+        setIsExpanded(false);
+        if (state?.currentLanguage === "en") {
+            nav("our-doctors", {
+                state: {
+                    currentLanguage: "en",
+                    isLoggedIn: state?.isLoggedIn ? true : false,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                }
+            })
+        }
+        else {
+            nav("our-doctors", {
+                state: {
+                    currentLanguage: "ar",
+                    isLoggedIn: state?.isLoggedIn ? true : false,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                }
+            })
+        }
+    }
+    const navigateAbout = () => {
+        setIsExpanded(false);
+        if (state?.currentLanguage === "en") {
+            nav("about-us", {
+                state: {
+                    currentLanguage: "en",
+                    isLoggedIn: state?.isLoggedIn ? true : false,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                }
+            })
+        }
+        else {
+            nav("about-us", {
+                state: {
+                    currentLanguage: "ar",
+                    isLoggedIn: state?.isLoggedIn ? true : false,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                }
+            })
+        }
+    }
+    const navigatePrivacyPolicy = () => {
+        setIsExpanded(false);
+        if (state?.currentLanguage === "en") {
+            nav("privacy-policy", {
+                state: {
+                    currentLanguage: "en",
+                    isLoggedIn: state?.isLoggedIn ? true : false,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                }
+            })
+        }
+        else {
+            nav("privacy-policy", {
+                state: {
+                    currentLanguage: "ar",
+                    isLoggedIn: state?.isLoggedIn ? true : false,
+                    user: state?.user,
+                    logInToken: state?.logInToken
+                }
+            })
+        }
+    }
     useEffect(() => {
         setLang(state?.currentLanguage)
     }, []);
@@ -151,7 +242,7 @@ export const Header = () => {
                 <Container>
                     <Navbar.Brand>
                         <div onClick={() => changeLang("en")}>
-                            ekseer <span>&#174;</span>
+                            Medical Cloud <br /> <span id='companyLogo'>Company</span>  <span>&#174;</span>
                         </div>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{ position: 'relative', left: '10px' }} onClick={handleToggleClick} />
@@ -175,10 +266,10 @@ export const Header = () => {
                                         <Image src="/assets/images/icons/to-do-list.png" />
                                         My consultations
                                     </div>
-                                    <div className='nav-link d-flex' onClick={() => redirectLogin("en", "patient")}>
+                                    {/* <div className='nav-link d-flex' onClick={() => redirectLogin("en", "patient")}>
                                         <Image src="/assets/images/icons/profile-user.png" />
                                         Update profile
-                                    </div>
+                                    </div> */}
                                 </>
                                 :
                                 <div className='nav-link d-flex' onClick={() => redirectLogin("en", "patient")}>
@@ -186,13 +277,21 @@ export const Header = () => {
                                     Register/Login
                                 </div>
                             }
-                            <div className='nav-link d-flex'>
+                            <div className='nav-link d-flex' onClick={navigateAbout}>
                                 <Image src="/assets/images/icons/id-card.png" />
                                 About us
                             </div>
-                            <div className='nav-link d-flex'>
+                            <div className='nav-link d-flex' onClick={navigateOurDoctors}>
+                                <Image src="/assets/images/icons/our-doctors.png" id='ourDoctorsImg' />
+                                Our doctors
+                            </div>
+                            <div className='nav-link d-flex' onClick={navigateContact} >
                                 <Image src="/assets/images/icons/customer-service.png" />
                                 Contact us
+                            </div>
+                            <div className='nav-link d-flex' onClick={navigatePrivacyPolicy} >
+                                <Image src="/assets/images/icons/privacy-policy.png" />
+                                Privacy Policy
                             </div>
                             {state?.isLoggedIn ?
                                 <div className='nav-link d-flex' onClick={() => redirectLogout("en")}>
@@ -251,10 +350,10 @@ export const Header = () => {
                                             استشاراتي
                                             <Image src="/assets/images/icons/to-do-list.png" />
                                         </div>
-                                        <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
+                                        {/* <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
                                             تحديث الملف
                                             <Image src="/assets/images/icons/profile-user.png" />
-                                        </div>
+                                        </div> */}
                                     </>
                                     :
                                     <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
@@ -262,13 +361,21 @@ export const Header = () => {
                                         <Image src="/assets/images/icons/customer.png" />
                                     </div>
                                 }
-                                <div className='nav-link d-flex'>
+                                <div className='nav-link d-flex' onClick={navigateOurDoctors}>
+                                    أطباؤنا
+                                    <Image src="/assets/images/icons/our-doctors.png" id="ourDoctorsImg" />
+                                </div>
+                                <div className='nav-link d-flex' onClick={navigateAbout}>
                                     من نحن
                                     <Image src="/assets/images/icons/id-card.png" />
                                 </div>
-                                <div className='nav-link d-flex'>
+                                <div className='nav-link d-flex' onClick={navigateContact}>
                                     اتصل بنا
                                     <Image src="/assets/images/icons/customer-service.png" />
+                                </div>
+                                <div className='nav-link d-flex' onClick={navigatePrivacyPolicy}>
+                                    سياسة الخصوصية
+                                    <Image src="/assets/images/icons/privacy-policy.png" />
                                 </div>
                                 {state?.isLoggedIn ?
                                     <div className='nav-link d-flex' onClick={() => redirectLogout("ar")}>
@@ -321,7 +428,7 @@ export const Header = () => {
                                     </div>
                                 }
                             </Nav>
-                            <Nav className="mx-auto" id='ar'>
+                            <Nav className="mx-auto mxAr" id='ar'>
                                 {state?.isLoggedIn ?
                                     <div className='nav-link d-flex' onClick={() => redirectLogout("ar")}>
                                         تسجيل الخروج
@@ -330,11 +437,19 @@ export const Header = () => {
                                     :
                                     ""
                                 }
-                                <div className='nav-link d-flex'>
+                                <div className='nav-link d-flex' onClick={navigatePrivacyPolicy}>
+                                    سياسة الخصوصية
+                                    <Image src="/assets/images/icons/privacy-policy.png" />
+                                </div>
+                                <div className='nav-link d-flex' onClick={navigateContact}>
                                     اتصل بنا
                                     <Image src="/assets/images/icons/customer-service.png" />
                                 </div>
-                                <div className='nav-link d-flex'>
+                                <div className='nav-link d-flex' onClick={navigateOurDoctors} >
+                                    أطباؤنا
+                                    <Image src="/assets/images/icons/our-doctors.png" />
+                                </div>
+                                <div className='nav-link d-flex' onClick={navigateAbout}>
                                     من نحن
                                     <Image src="/assets/images/icons/id-card.png" />
                                 </div>
@@ -344,10 +459,10 @@ export const Header = () => {
                                             استشاراتي
                                             <Image src="/assets/images/icons/to-do-list.png" />
                                         </div>
-                                        <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
+                                        {/* <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
                                             تحديث الملف
                                             <Image src="/assets/images/icons/profile-user.png" />
-                                        </div>
+                                        </div> */}
                                     </>
                                     :
                                     <div className='nav-link d-flex' onClick={() => redirectLogin("ar", "patient")}>
@@ -363,8 +478,8 @@ export const Header = () => {
                         </Navbar.Collapse>
                     }
                     <Navbar.Brand id='ar-logo'>
-                        <div onClick={() => changeLang("ar")}>
-                            <Image src="/assets/images/arlogo.png" />
+                        <div onClick={() => changeLang("ar")} id='arLogo'>
+                            شركة السحابة <br />  <span>&#174;</span> <span id='companyLogo'>الطبية</span>
                         </div>
                     </Navbar.Brand>
                 </Container>
