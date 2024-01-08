@@ -5,7 +5,7 @@ import { ShowSelectedConsultation } from './ShowSelectedConsultation';
 
 export const ShowAllConsultations = (props) => {
 
-    const BASE_URL = 'http://127.0.0.1:8000/api';
+    const BASE_URL = 'https://backend.alsahaba.sa/api';
     const [doctors, setDoctors] = useState([]);
     const [consultations, setConsultations] = useState([]);
     const [selectedConsultation, setSelectedConsultation] = useState("");

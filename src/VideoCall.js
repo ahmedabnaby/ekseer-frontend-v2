@@ -29,7 +29,7 @@ export const VideoCall = () => {
     "only screen and (max-width: 768px)"
   ).matches;
 
-  const BASE_URL = 'http://127.0.0.1:8000/api';
+  const BASE_URL = 'https://backend.alsahaba.sa/api';
 
 
   const updateAwaitingTime = async () => {

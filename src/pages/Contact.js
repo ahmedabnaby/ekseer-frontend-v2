@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export const Contact = () => {
-    const BASE_URL = 'http://localhost:8000/api';
+    const BASE_URL = 'https://backend.alsahaba.sa/api';
 
     const { state } = useLocation();
     console.log(state);

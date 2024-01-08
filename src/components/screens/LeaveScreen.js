@@ -5,7 +5,7 @@ import axios from 'axios';
 export function LeaveScreen({ setIsMeetingLeft }) {
   const { state } = useLocation();
   const nav = useNavigate();
-  const BASE_URL = 'http://127.0.0.1:8000/api';
+  const BASE_URL = 'https://backend.alsahaba.sa/api';
 
   var call_id = state?.call_id;
   const navigateHomePage = () => {

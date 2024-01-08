@@ -49,7 +49,7 @@ export const Questions = () => {
 
         axios({
             method: "post",
-            url: `http://127.0.0.1:8000/api/initiate-payment/`
+            url: `https://backend.alsahaba.sa/api/initiate-payment/`
 
         })
             .then(function (response) {

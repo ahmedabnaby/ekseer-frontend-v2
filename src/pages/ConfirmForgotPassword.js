@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 export const ConfirmForgotPassword = () => {
-    const BASE_URL = "http://localhost:8000/api";
+    const BASE_URL = "https://backend.alsahaba.sa/api";
 
     var { state } = useLocation();
     state = {

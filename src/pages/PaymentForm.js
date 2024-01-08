@@ -22,7 +22,7 @@ export const PaymentForm = () => {
 
     await axios({
       method: "GET",
-      url: `http://127.0.0.1:8000/api/get-order-payment/${paymentTypeValue}`
+      url: `https://backend.alsahaba.sa/api/get-order-payment/${paymentTypeValue}`
     })
       .then(function (response) {
         console.log(response)

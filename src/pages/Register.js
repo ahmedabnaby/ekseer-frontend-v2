@@ -4,8 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export const Register = () => {
-    // const BASE_URL = 'https://ekseerv2.pythonanywhere.com/api';
-    const BASE_URL = 'http://localhost:8000/api';
+    // const BASE_URL = 'https://backend.alsahaba.sa/api';
+    const BASE_URL = 'https://backend.alsahaba.sa/api';
     const { state } = useLocation();
     console.log(state)
     const nav = useNavigate();

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export const Logout = () => {
-    const BASE_URL = 'http://127.0.0.1:8000/api';
+    const BASE_URL = 'https://backend.alsahaba.sa/api';
     const { state } = useLocation();
     const nav = useNavigate();
 

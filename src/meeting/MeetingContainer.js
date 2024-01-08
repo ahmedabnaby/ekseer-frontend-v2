@@ -29,7 +29,7 @@ export function MeetingContainer({
   micEnabled,
   webcamEnabled,
 }) {
-  const BASE_URL = 'http://127.0.0.1:8000/api';
+  const BASE_URL = 'https://backend.alsahaba.sa/api';
   const { useRaisedHandParticipants } = useMeetingAppContext();
   const { getVideoTrack } = useMediaStream();
   const { state } = useLocation();
